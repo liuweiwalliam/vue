@@ -20,12 +20,15 @@
 *.swn
 
 # Config
+Config.json
+test200.json
+test403.json
 
 # Tools
+updateConfig.php
 *.log
 /.sass-cache/
-/templates_c/
-
 # Windows
 desktop.ini
 .sass-cache/
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-book</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app1">
+    <div class="container">
+        <table class="table table-bordered">
+            <tr>
+                <th>name</th>
+                <th>price</th>
+                <th>inventory</th>
+                <th>num</th>
+                <th>count</th>
+                <th>opertion</th>
+            </tr>
+            <tr v-for="book in books">
+                <td>{{book.name}}</td>
+                <td>{{book.price}}</td>
+                <th>{{book.inventory}}</th>
+                <td>
+                    <button @click=de>-</button>
+                    <input type="text" :value="book.num">
+                    <button @click=book.num++>+</button>
+                </td>
+                <td>{{book.price*book.num}}</td>
+                <td>
+                    <button class="btn btn-danger" @click=RemoveBook(book)>删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<script src="../node_modules/_vue@2.3.4@vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app1',
+        data: {
+            message: '2222',
+            books: [
+                {name: 'vue', price: 1, num: 1, inventory: 1},
+                {name: 'react', price: 2, num: 2, inventory: 77},
+                {name: 'ng', price: 3, num: 33, inventory: 77}
+            ]
+        },
+        methods:{
+            remove: function () {
+
+            }
+    }
+    })
+    ;
+</script>
+</body>
+</html>
+v-for
+v-if
+v-bind :
+v-on:click @
+v-text 渲染数据

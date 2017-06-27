@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-book</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app1">
+    <div class="container" style="margin-top: 20px">
+        <table class="table table-bordered">
+            <tr>
+                <th>name</th>
+                <th>price</th>
+                <th>inventory</th>
+                <th>num</th>
+                <th>count</th>
+                <th>opertion</th>
+            </tr>
+            <tr v-for="(book,index) in books">
+                <td>{{book.name}}</td>
+                <td>{{book.price}}</td>
+                <th>{{book.inventory}}</th>
+                <td>
+                    <button @click=(book.num<=0?(book.num=0):(book.num--))>-</button>
+                    <input type="text" :value="book.num">
+                    <button @click="AddBook(book)">+</button>
+                </td>
+                <td>{{book.price*book.num}}</td>
+                <td>
+                    <button class="btn btn-danger" @click="RemoveBook(index)">删除</button>
+                </td>
+            </tr>
+            <tr>
+                <td>总数量:</td>
+                <td v-text="totalNum"></td>
+                <td>总价:</td>
+                <td v-text="totalPrice"></td>
+                <td colspan="2">
+                    <button class="btn btn-success">结算</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <label for="bookName">书名</label>
+        <input type="text" id="bookName" v-model="list.name">
+        <label for="bookPrice">价格</label>
+        <input type="text" id="bookPrice" v-model="list.price">
+        <label for="bookInventory">库存</label>
+        <input type="text" id="bookInventory" v-model="list.inventory">
+        <button class="btn btn-primary" @click="AddNewBook">添加</button>
+    </div>
+
+</div>
+<script src="../node_modules/_vue@2.3.4@vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+            el: '#app1',
+            data: {
+                message: '2222',
+                books: [
+                    {name: 'vue', price: 1, num: 02, inventory: 3},
+                    {name: 'react', price: 2, num: 0, inventory: 5},
+                    {name: 'ng', price: 3, num: 0, inventory: 77}
+                ],
+                list: {name: "",price:'',inventory:''}
+            },
+            methods: {
+                RemoveBook: function (book) {
+                    this.books.splice(book, 1);
+                },
+                AddBook: function (book) {
+                    (book.num >= book.inventory) ? (book.num = book.inventory) : (book.num++);
+                },
+                AddNewBook: function () {
+                    let bookItem = {};
+                    if( this.list.name!='' && this.list.inventory!='' &&this.list.price!=0  ){
+                        bookItem = {
+                            name:this.list.name,
+                            price:this.list.inventory,
+                            inventory:this.list.price,
+                            num:0,
+                            count:0
+                        };
+                        this.books.push(bookItem);
+                        cleanNew(this.list);
+                    }
+                }
+            },
+            computed: {
+                totalPrice: function () {
+                    let num = 0;
+                    this.books.forEach(function (item, index) {
+                        num += item.price * item.num;
+                    });
+                    return num
+                },
+                totalNum: function () {
+                    let num = 0;
+                    this.books.forEach(function (item, index) {
+                        num += item.num;
+                    });
+                    return num
+                }
+            }
+        })
+    ;
+    function cleanNew(item) {
+        item.name = '';
+        item.price = '';
+        item.inventory = '';
+    }
+</script>
+</body>
+</html>
+v-for
+v-if
+v-bind :
+v-on:click @
+v-text 渲染数据

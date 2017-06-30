@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/liuweiwalliam/vue#readme",
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "vue": "^2.3.4"
   }
 }

@@ -28,8 +28,7 @@ test403.json
 updateConfig.php
 *.log
 /.sass-cache/
-
 # Windows
 desktop.ini
 .sass-cache/
-new_pay/
+

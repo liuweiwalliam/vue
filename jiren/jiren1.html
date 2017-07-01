@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .finished {
+            text-decoration: line-through;
+        }
+        .blue {
+            color: blue
+        }
+        .background {
+            background: aqua;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1 v-text="tittle"></h1>
+    <ul v-for="(item,index) in items">
+        <li :class="['background',{finished:item.isFinish}]" @click="ToggleFinish(item,index)">{{item.label}}</li>
+    </ul>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var ToDoList = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                tittle: 'To do List',
+                items: [
+                    {label: 'coding', isFinish: false},
+                    {label: 'walking', isFinish: true}
+                ],
+            }
+        },
+        methods: {
+            ToggleFinish: function (item, index) {
+                item.isFinish = !item.isFinish;
+            }
+        },
+        computed: {}
+    });
+</script>
+</body>
+</html>
